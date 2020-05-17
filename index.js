@@ -14,6 +14,7 @@ server.on("connection", function(socket){
         for (let i of clients){
             i.send(message);
         }
+        messages = messages.slice(Math.max(messages.length-10, 0));
         fs.writeFileSync("history.json", JSON.stringify(messages));
     });
     socket.on("close", function(){
